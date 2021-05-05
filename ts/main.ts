@@ -9,6 +9,20 @@ function main():void{
     resetErrorMessages();
     isTextPresent("first-name", "First name is required");
     isTextPresent("last-name", "Last name is required")
+
+    // validate date
+    let dobBox = <HTMLInputElement>document.getElementById("dob");
+    let dob = dobBox.value;
+    if(!isValidDate(dob)){
+        dobBox.nextElementSibling.innerHTML = "Format should be mm/dd/yyyy";
+    }
+}
+
+function isValidDate(input:string):boolean{
+    // validating mm/dd/yyyy and m/d/yyyy
+    // using regular expressions
+    let pattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/g
+    return pattern.test(input);
 }
 
 /**
